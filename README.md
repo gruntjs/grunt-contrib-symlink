@@ -71,10 +71,12 @@ symlink: {
 
 ## Release History
 
- * 2013-07-26   v0.1.0   Initial release.
+ * 2013-07-26   v0.2.0   Initial release as rewritten, officially-maintained, contrib plugin.
+ * 2012-12-21   v0.1.1   Unofficial release.
+ * 2012-12-20   v0.1.0   Unofficial release.
 
 ---
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Fri Jul 26 2013 15:17:33.*
+*This file was generated on Mon Jul 29 2013 12:12:23.*
