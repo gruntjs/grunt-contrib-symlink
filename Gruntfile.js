@@ -63,6 +63,24 @@ module.exports = function(grunt) {
           }
         ],
       },
+      samedir: {
+        files: [
+          {
+            expand: true,
+            cwd: 'tmp',
+            src: '.',
+            dest: 'tmp/samedir',
+          }
+        ],
+      },
+    },
+    copy: {
+      samedir: {
+        expand: true,
+        cwd: 'test/fixtures-copy/',
+        src: 'samedir.txt',
+        dest: 'tmp/',
+      },
     },
 
     // Unit tests.
@@ -80,10 +98,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'symlink', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'copy', 'symlink', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
