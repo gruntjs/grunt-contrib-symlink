@@ -2,6 +2,10 @@
 
 ```js
 symlink: {
+  // Enable overwrite to delete symlinks before recreating them
+  options: {
+    overwrite: false
+  },
   // The "build/target.txt" symlink will be created and linked to
   // "source/target.txt". It should appear like this in a file listing:
   // build/target.txt -> ../source/target.txt
@@ -34,4 +38,12 @@ symlink: {
     ]
   },
 }
+```
+
+## CLI overwrite option
+
+To override the overwrite option via the CLI pass it as an option
+
+```shell
+  grunt symlink --overwrite
 ```

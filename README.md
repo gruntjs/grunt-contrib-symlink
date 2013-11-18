@@ -34,6 +34,10 @@ Note that the symlink mode (file, dir) is determined automatically based on the 
 
 ```js
 symlink: {
+  // Enable overwrite to delete symlinks before recreating them
+  options: {
+    overwrite: false
+  },
   // The "build/target.txt" symlink will be created and linked to
   // "source/target.txt". It should appear like this in a file listing:
   // build/target.txt -> ../source/target.txt
@@ -50,6 +54,7 @@ symlink: {
       // stripped off.
       {
         expand: true,
+        overwrite: false,
         cwd: 'source',
         src: ['foo-*'],
         dest: 'build'
@@ -58,6 +63,7 @@ symlink: {
       // directory, with the leading "source" stripped off.
       {
         expand: true,
+        overwrite: false,
         cwd: 'source',
         src: ['*'],
         dest: 'build',
@@ -66,6 +72,14 @@ symlink: {
     ]
   },
 }
+```
+
+## CLI overwrite option
+
+To override the overwrite option via the CLI pass it as an option
+
+```shell
+  grunt symlink --overwrite
 ```
 
 
