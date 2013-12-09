@@ -46,6 +46,8 @@ module.exports = function(grunt) {
         grunt.verbose.ok();
       } catch(e) {
         grunt.verbose.error();
+        grunt.log.error(e);
+        grunt.fail.warn('Failed to create symlink: ' + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '.');
       }
       linkCount++;
     });
