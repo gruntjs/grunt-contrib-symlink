@@ -16,6 +16,15 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('symlink', 'Create symbolic links.', function() {
     var nowrite = grunt.option('no-write');
     var linkCount = 0;
+
+    // default options
+    var options = this.options({
+      overwrite: false
+    });
+
+    // overwrite options from CLI
+    options.overwrite = grunt.option('overwrite') || options.overwrite;
+
     this.files.forEach(function(f) {
       var srcpath = f.src[0];
       var destpath = f.dest;
@@ -23,8 +32,11 @@ module.exports = function(grunt) {
         grunt.log.warn('Source file "' + srcpath + '" not found.');
         return;
       } else if (grunt.file.exists(destpath)) {
-        grunt.log.warn('Destination ' + destpath + ' already exists.');
-        return;
+        if (!options.overwrite) {
+          grunt.log.warn('Destination ' + destpath + ' already exists.');
+          return;
+        }
+        grunt.file.delete(destpath);
       }
       // Strip any trailing slashes.
       destpath = destpath.replace(/[\\\/]$/, '');
