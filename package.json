@@ -43,5 +43,9 @@
     "copy",
     "symlink",
     "symbolic"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
   ]
 }
