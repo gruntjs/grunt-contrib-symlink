@@ -44,7 +44,7 @@ module.exports = function(grunt) {
       var destdir = path.join(destpath, '..');
       // If the dest path is relative, create a proper relative symlink path.
       if (!grunt.file.isPathAbsolute(srcpath)) {
-        srcpath = path.relative(destdir, srcpath);
+        srcpath = path.relative(destdir, srcpath) || '.';
       }
       // Create any necessary interim directories.
       grunt.file.mkdir(destdir);

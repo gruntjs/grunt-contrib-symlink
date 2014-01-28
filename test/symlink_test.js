@@ -56,4 +56,11 @@ exports.symlink = {
 
     test.done();
   },
+  samedir: function(test) {
+    test.expect(1);
+
+    test.equal(grunt.file.read('tmp/samedir/samedir.txt'), 'samedir!', 'should be the fixture file,');
+
+    test.done();
+  }
 };
