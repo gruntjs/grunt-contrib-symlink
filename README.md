@@ -1,4 +1,4 @@
-# grunt-contrib-symlink
+# grunt-contrib-symlink v0.3.0
 
 > Create symbolic links.
 
@@ -82,9 +82,14 @@ To override the overwrite option via the CLI pass it as an option
   grunt symlink --overwrite
 ```
 
+## Usage tips on Microsoft Windows
+
+Make sure your command prompt has administrative privileges, otherwise
+the task will not work.
 
 ## Release History
 
+ * 2014-01-27   v0.3.0   Fixed symlinking to '.' Add Windows usage hints. Added error logging and force failure when unable to create a symlink
  * 2013-07-26   v0.2.0   Initial release as rewritten, officially-maintained, contrib plugin.
  * 2012-12-21   v0.1.1   Unofficial release.
  * 2012-12-20   v0.1.0   Unofficial release.
@@ -93,4 +98,4 @@ To override the overwrite option via the CLI pass it as an option
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Mon Jul 29 2013 12:12:23.*
+*This file was generated on Mon Jan 27 2014 21:21:46.*
