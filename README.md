@@ -74,7 +74,7 @@ symlink: {
 }
 ```
 
-## CLI overwrite option
+#### CLI overwrite option
 
 To override the overwrite option via the CLI pass it as an option
 
@@ -82,14 +82,15 @@ To override the overwrite option via the CLI pass it as an option
   grunt symlink --overwrite
 ```
 
-## Usage tips on Microsoft Windows
+#### Usage tips on Microsoft Windows
 
 Make sure your command prompt has administrative privileges, otherwise
 the task will not work.
 
+
 ## Release History
 
- * 2014-01-27   v0.3.0   Fixed symlinking to '.' Add Windows usage hints. Added error logging and force failure when unable to create a symlink
+ * 2014-02-01   v0.3.0   Fixed symlinking to '.' Add Windows usage hints. Added error logging and force failure when unable to create a symlink
  * 2013-07-26   v0.2.0   Initial release as rewritten, officially-maintained, contrib plugin.
  * 2012-12-21   v0.1.1   Unofficial release.
  * 2012-12-20   v0.1.0   Unofficial release.
@@ -98,4 +99,4 @@ the task will not work.
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Mon Jan 27 2014 21:21:46.*
+*This file was generated on Sat Feb 01 2014 23:58:37.*

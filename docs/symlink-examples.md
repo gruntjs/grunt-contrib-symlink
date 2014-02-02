@@ -22,6 +22,7 @@ symlink: {
       // stripped off.
       {
         expand: true,
+        overwrite: false,
         cwd: 'source',
         src: ['foo-*'],
         dest: 'build'
@@ -30,6 +31,7 @@ symlink: {
       // directory, with the leading "source" stripped off.
       {
         expand: true,
+        overwrite: false,
         cwd: 'source',
         src: ['*'],
         dest: 'build',
@@ -47,3 +49,8 @@ To override the overwrite option via the CLI pass it as an option
 ```shell
   grunt symlink --overwrite
 ```
+
+## Usage tips on Microsoft Windows
+
+Make sure your command prompt has administrative privileges, otherwise
+the task will not work.

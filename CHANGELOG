@@ -1,5 +1,5 @@
 v0.3.0:
-  data: 2014-01-27
+  date: 2014-02-01
   changes:
     - Fixed symlinking to '.'
     - Add Windows usage hints.
