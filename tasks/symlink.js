@@ -19,51 +19,71 @@ module.exports = function(grunt) {
 
     // default options
     var options = this.options({
-      overwrite: false
+      overwrite: false,
+      delete: false,
     });
 
     // overwrite options from CLI
     options.overwrite = grunt.option('overwrite') || options.overwrite;
 
-    this.files.forEach(function(f) {
-      var srcpath = f.src[0];
-      var destpath = f.dest;
-      if (!grunt.file.exists(srcpath)) {
-        grunt.log.warn('Source file "' + srcpath + '" not found.');
-        return;
-      } else if (grunt.file.exists(destpath)) {
-        if (!options.overwrite) {
-          grunt.log.warn('Destination ' + destpath + ' already exists.');
+    if (options.delete) {
+      this.files.forEach(function(f) {
+        var destpath = f.dest;
+        if (!grunt.file.exists(destpath)) {
+          grunt.log.warn('Destination ' + destpath + ' not found.');
+          return;
+        } else if (!grunt.file.isLink(destpath)) {
+          grunt.log.warn('Destination ' + destpath + ' is not a symlink.');
           return;
         }
         grunt.file.delete(destpath);
-      }
-      // Strip any trailing slashes.
-      destpath = destpath.replace(/[\\\/]$/, '');
-      // The destdir is the location in which the symlink will be created.
-      var destdir = path.join(destpath, '..');
-      // If the dest path is relative, create a proper relative symlink path.
-      if (!grunt.file.isPathAbsolute(srcpath)) {
-        srcpath = path.relative(destdir, srcpath) || '.';
-      }
-      // Create any necessary interim directories.
-      grunt.file.mkdir(destdir);
-      // The symlink mode is determined automatically.
-      var mode = grunt.file.isDir(f.src[0]) ? 'dir' : 'file';
-      grunt.verbose.write((nowrite ? 'Not actually linking ' : 'Linking ') + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '...');
-      try {
-        if (!nowrite) {
-          fs.symlinkSync(srcpath, destpath, mode);
+        linkCount++;
+      });
+      grunt.log.ok('Deleted ' + linkCount + ' symbolic link(s).');
+    } else {
+      this.files.forEach(function(f) {
+        var srcpath = f.src[0];
+        var destpath = f.dest;
+        if (!grunt.file.exists(srcpath)) {
+          grunt.log.warn('Source file "' + srcpath + '" not found.');
+          return;
+        } else if (grunt.file.exists(destpath)) {
+          if (!options.overwrite) {
+            grunt.log.warn('Destination ' + destpath + ' already exists.');
+            return;
+          } else if (!grunt.file.isLink(destpath)) {
+            grunt.log.warn('Destination ' + destpath + ' is not a symlink.');
+            return;
+          }
+          grunt.file.delete(destpath);
         }
-        grunt.verbose.ok();
-      } catch(e) {
-        grunt.verbose.error();
-        grunt.log.error(e);
-        grunt.fail.warn('Failed to create symlink: ' + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '.');
-      }
-      linkCount++;
-    });
-    grunt.log.ok('Created ' + linkCount + ' symbolic links.');
+        // Strip any trailing slashes.
+        destpath = destpath.replace(/[\\\/]$/, '');
+        // The destdir is the location in which the symlink will be created.
+        var destdir = path.join(destpath, '..');
+        // If the dest path is relative, create a proper relative symlink path.
+        if (!grunt.file.isPathAbsolute(srcpath)) {
+          srcpath = path.relative(destdir, srcpath) || '.';
+        }
+        // Create any necessary interim directories.
+        grunt.file.mkdir(destdir);
+        // The symlink mode is determined automatically.
+        var mode = grunt.file.isDir(f.src[0]) ? 'dir' : 'file';
+        grunt.verbose.write((nowrite ? 'Not actually linking ' : 'Linking ') + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '...');
+        try {
+          if (!nowrite) {
+            fs.symlinkSync(srcpath, destpath, mode);
+          }
+          grunt.verbose.ok();
+        } catch(e) {
+          grunt.verbose.error();
+          grunt.log.error(e);
+          grunt.fail.warn('Failed to create symlink: ' + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '.');
+        }
+        linkCount++;
+      });
+      grunt.log.ok('Created ' + linkCount + ' symbolic link(s).');
+    }
   });
 
 };
