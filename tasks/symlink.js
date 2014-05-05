@@ -27,7 +27,11 @@ module.exports = function(grunt) {
 
     this.files.forEach(function(f) {
       var srcpath = f.src[0];
-      var destpath = f.dest;
+      if (f.regex) {
+		    var destpath = f.src[0].replace(f.regex, f.backreference);
+	    } else {
+        var destpath = f.dest;
+	    }
       if (!grunt.file.exists(srcpath)) {
         grunt.log.warn('Source file "' + srcpath + '" not found.');
         return;
