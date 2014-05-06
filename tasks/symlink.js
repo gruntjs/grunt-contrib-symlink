@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     this.files.forEach(function(f) {
       var srcpath = f.src[0];
       var destpath = f.dest;
-      if (f.regex) {
+      if (f.regex && f.backreference) {
         destpath = f.src[0].replace(f.regex, f.backreference);
       }
       if (!grunt.file.exists(srcpath)) {
