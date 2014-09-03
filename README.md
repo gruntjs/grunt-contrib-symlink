@@ -27,7 +27,7 @@ _Run this task with the `grunt symlink` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide. Pay special attention to the [Building the files object dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) section, which explains how to create many src-dest file mappings all at once.
 
-Note that the symlink mode (file, dir) is determined automatically based on the src file type.
+Note that the (Windows feature only) symlink mode (file, dir) is determined automatically based on the src file type, but takes into account dirmode parameter and allows using junctions instead of dir symlinks.
 
 
 ### Usage Examples
@@ -36,7 +36,8 @@ Note that the symlink mode (file, dir) is determined automatically based on the 
 symlink: {
   // Enable overwrite to delete symlinks before recreating them
   options: {
-    overwrite: false
+    overwrite: false,
+    dirmode: 'dir'
   },
   // The "build/target.txt" symlink will be created and linked to
   // "source/target.txt". It should appear like this in a file listing:
@@ -59,11 +60,12 @@ symlink: {
         src: ['foo-*'],
         dest: 'build'
       },
-      // All child directories in "source" will be symlinked into the "build"
+      // All child directories in "source" will be symlinked (or junctioned only on Windows) into the "build"
       // directory, with the leading "source" stripped off.
       {
         expand: true,
         overwrite: false,
+        dirmode: 'junction',
         cwd: 'source',
         src: ['*'],
         dest: 'build',
@@ -84,8 +86,9 @@ To override the overwrite option via the CLI pass it as an option
 
 #### Usage tips on Microsoft Windows
 
-Make sure your command prompt has administrative privileges, otherwise
+Make sure your command prompt has administrative privileges for standard symlinks, otherwise
 the task will not work.
+Junctions does not require administrative privileges but due to node bug in 0.10 release node forces it. Hopefully it will be released someday and junctions will work as expected.
 
 
 ## Release History
