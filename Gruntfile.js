@@ -2,7 +2,7 @@
  * grunt-contrib-symlink
  * https://github.com/gruntjs/grunt-contrib-symlink
  *
- * Copyright (c) 2014 Grunt Team
+ * Copyright (c) 2015 Grunt Team
  * Licensed under the MIT license.
  */
 
