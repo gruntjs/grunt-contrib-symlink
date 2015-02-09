@@ -30,6 +30,13 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     symlink: {
+      forceIgnoresErrors: {
+        options: {
+          force: true,
+        },
+        src: 'test',
+        dest: 'test2//',
+      },
       explicit: {
         src: 'test/fixtures/baz.txt',
         dest: 'tmp/baz.txt'

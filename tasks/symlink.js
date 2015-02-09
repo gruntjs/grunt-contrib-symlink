@@ -19,8 +19,12 @@ module.exports = function(grunt) {
 
     // default options
     var options = this.options({
+      force: false,
       overwrite: false
     });
+
+    // Report errors but don't fail the task
+    var force = options.force;
 
     // overwrite options from CLI
     options.overwrite = grunt.option('overwrite') || options.overwrite;
@@ -56,12 +60,13 @@ module.exports = function(grunt) {
           fs.symlinkSync(srcpath, destpath, mode);
         }
         grunt.verbose.ok();
+        linkCount++;
       } catch(e) {
         grunt.verbose.error();
         grunt.log.error(e);
-        grunt.fail.warn('Failed to create symlink: ' + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '.');
+        var warn = force ? grunt.log.warn : grunt.fail.warn;
+        warn('Failed to create symlink: ' + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '.');
       }
-      linkCount++;
     });
     grunt.log.ok('Created ' + linkCount + ' symbolic links.');
   });
