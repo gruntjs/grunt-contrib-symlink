@@ -19,11 +19,15 @@ module.exports = function(grunt) {
 
     // default options
     var options = this.options({
-      overwrite: false
+      overwrite: false,
+      force: false
     });
 
     // overwrite options from CLI
     options.overwrite = grunt.option('overwrite') || options.overwrite;
+
+    // force options from CLI
+    options.force = grunt.option('force') || options.force;
 
     this.files.forEach(function(f) {
       var srcpath = f.src[0];
@@ -36,7 +40,7 @@ module.exports = function(grunt) {
           grunt.log.warn('Destination ' + destpath + ' already exists.');
           return;
         }
-        grunt.file.delete(destpath);
+        grunt.file.delete(destpath, {force: options.force});
       }
       // Strip any trailing slashes.
       destpath = destpath.replace(/[\\\/]$/, '');
