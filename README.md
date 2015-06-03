@@ -34,9 +34,11 @@ Note that the symlink mode (file, dir) is determined automatically based on the 
 
 ```js
 symlink: {
-  // Enable overwrite to delete symlinks before recreating them
   options: {
-    overwrite: false
+    // Enable overwrite to delete symlinks before recreating them
+    overwrite: false,
+    // Enable force to overwrite symlinks outside the current working directory
+    force: false
   },
   // The "build/target.txt" symlink will be created and linked to
   // "source/target.txt". It should appear like this in a file listing:
