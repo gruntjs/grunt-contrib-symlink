@@ -29,9 +29,6 @@
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1"
   },
-  "peerDependencies": {
-    "grunt": "~0.4.1"
-  },
   "keywords": [
     "gruntplugin",
     "file",
