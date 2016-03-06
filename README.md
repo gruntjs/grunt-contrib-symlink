@@ -1,11 +1,10 @@
-# grunt-contrib-symlink v0.3.0
+# grunt-contrib-symlink v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-symlink.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-symlink)
 
 > Create symbolic links.
 
 
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -34,10 +33,13 @@ Note that the (Windows feature only) symlink mode (file, dir) is determined auto
 
 ```js
 symlink: {
-  // Enable overwrite to delete symlinks before recreating them
   options: {
-    overwrite: false,
+    // Enable having dir symlink or junction for Windows
     dirmode: 'dir'
+    // Enable overwrite to delete symlinks before recreating them
+    overwrite: false,
+    // Enable force to overwrite symlinks outside the current working directory
+    force: false
   },
   // The "build/target.txt" symlink will be created and linked to
   // "source/target.txt". It should appear like this in a file listing:
@@ -60,7 +62,7 @@ symlink: {
         src: ['foo-*'],
         dest: 'build'
       },
-      // All child directories in "source" will be symlinked (or junctioned only on Windows) into the "build"
+      // All child directories in "source" will be symlinked (or junctioned on Windows only) into the "build"
       // directory, with the leading "source" stripped off.
       {
         expand: true,
@@ -88,11 +90,12 @@ To override the overwrite option via the CLI pass it as an option
 
 Make sure your command prompt has administrative privileges for standard symlinks, otherwise
 the task will not work.
-Junctions does not require administrative privileges but due to node bug in 0.10 release node forces it. Hopefully it will be released someday and junctions will work as expected.
+Junctions does not require administrative privileges but due to bug in old version of node (v0.10) they are required.
 
 
 ## Release History
 
+ * 2016-02-28   v1.0.0   Added `force` option when overwriting a symlink outside the current working directory.
  * 2014-02-01   v0.3.0   Fixed symlinking to '.' Add Windows usage hints. Added error logging and force failure when unable to create a symlink
  * 2013-07-26   v0.2.0   Initial release as rewritten, officially-maintained, contrib plugin.
  * 2012-12-21   v0.1.1   Unofficial release.
@@ -102,4 +105,4 @@ Junctions does not require administrative privileges but due to node bug in 0.10
 
 Task submitted by ["Cowboy" Ben Alman](http://benalman.com/)
 
-*This file was generated on Sat Feb 01 2014 23:58:37.*
+*This file was generated on Sun Feb 28 2016 20:26:42.*

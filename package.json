@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-symlink",
   "description": "Create symbolic links.",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/gruntjs/grunt-contrib-symlink",
   "author": {
     "name": "Grunt Team",
@@ -14,28 +14,24 @@
   "bugs": {
     "url": "https://github.com/gruntjs/grunt-contrib-symlink/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/gruntjs/grunt-contrib-symlink/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
+  "main": "tasks/symlink.js",
   "scripts": {
     "test": "grunt test"
   },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-internal": "~0.4.5",
-    "grunt": "~0.4.1",
-    "grunt-contrib-copy": "~0.4.1"
-  },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": ">=0.4.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-internal": "~0.4.5",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^0.4.1"
   },
   "keywords": [
     "gruntplugin",
