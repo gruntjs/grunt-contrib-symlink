@@ -20,17 +20,21 @@ module.exports = function(grunt) {
     // default options
     var options = this.options({
       overwrite: false,
-      force: false
+      force: false,
+      dirmode: 'dir'
     });
 
     // overwrite options from CLI
     options.overwrite = grunt.option('overwrite') || options.overwrite;
+    options.dirmode = grunt.option('dirmode') || options.dirmode;
 
     // force options from CLI
     options.force = grunt.option('force') || options.force;
 
     this.files.forEach(function(f) {
-      var srcpath = f.src[0];
+      // The symlink mode is determined semi-automatically.
+      var mode = grunt.file.isDir(f.src[0]) ? f.dirmode || options.dirmode : 'file';
+      var srcpath = mode === 'junction' ? path.resolve(f.src[0]) : f.src[0];
       var destpath = f.dest;
       if (!grunt.file.exists(srcpath)) {
         grunt.log.warn('Source file "' + srcpath + '" not found.');
@@ -52,8 +56,6 @@ module.exports = function(grunt) {
       }
       // Create any necessary interim directories.
       grunt.file.mkdir(destdir);
-      // The symlink mode is determined automatically.
-      var mode = grunt.file.isDir(f.src[0]) ? 'dir' : 'file';
       grunt.verbose.write((nowrite ? 'Not actually linking ' : 'Linking ') + '(' + mode + ') ' + destpath + ' -> ' + srcpath + '...');
       try {
         if (!nowrite) {
