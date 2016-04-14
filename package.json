@@ -2,18 +2,11 @@
   "name": "grunt-contrib-symlink",
   "description": "Create symbolic links.",
   "version": "1.0.0",
-  "homepage": "https://github.com/gruntjs/grunt-contrib-symlink",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/gruntjs/grunt-contrib-symlink.git"
-  },
-  "bugs": {
-    "url": "https://github.com/gruntjs/grunt-contrib-symlink/issues"
-  },
+  "repository": "gruntjs/grunt-contrib-symlink",
   "license": "MIT",
   "engines": {
     "node": ">= 0.10.0"
@@ -29,7 +22,7 @@
     "grunt": "^1.0.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-internal": "~1.1.0",
+    "grunt-contrib-internal": "^1.2.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-nodeunit": "^1.0.0"
   },
@@ -42,7 +35,7 @@
     "symbolic"
   ],
   "files": [
-    "tasks",
-    "LICENSE-MIT"
-  ]
+    "tasks"
+  ],
+  "appveyor_id": "sx8wri5lj9g3eq7f"
 }
