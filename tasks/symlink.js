@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         return;
       } else if (grunt.file.exists(destpath)) {
         if (!options.overwrite) {
-          grunt.log.warn('Destination ' + destpath + ' already exists.');
+          grunt.verbose.ok('Skipping ' + destpath + '. Destination already exists.');
           return;
         }
         grunt.file.delete(destpath, {force: options.force});
