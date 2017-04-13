@@ -36,6 +36,9 @@ module.exports = function(grunt) {
       var mode = grunt.file.isDir(f.src[0]) ? f.dirmode || options.dirmode : 'file';
       var srcpath = mode === 'junction' ? path.resolve(f.src[0]) : f.src[0];
       var destpath = f.dest;
+      if (f.regex && f.backreference) {
+        destpath = f.src[0].replace(f.regex, f.backreference);
+      }
       if (!grunt.file.exists(srcpath)) {
         grunt.log.warn('Source file "' + srcpath + '" not found.');
         return;
